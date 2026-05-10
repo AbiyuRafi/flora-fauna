@@ -4,6 +4,8 @@ export default function BentangAlamCard({ item, onClick, C }) {
   const [hov, setHov] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
+  const collapsedHeight = 170;
+
   return (
     <div
       onClick={() => onClick(item)}
@@ -121,33 +123,38 @@ export default function BentangAlamCard({ item, onClick, C }) {
             lineHeight: 1.8,
           }}
         >
-          <ul
+          <div
             style={{
-              paddingLeft: 20,
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
+              maxHeight: showMore ? "none" : collapsedHeight,
+              overflow: "hidden",
+              transition: "max-height 0.45s ease",
             }}
           >
-            {(Array.isArray(item.desc)
-              ? showMore
-                ? item.desc
-                : item.desc.slice(0, 2)
-              : [item.desc]
-            ).map((text, index) => (
-              <li
-                key={index}
-                style={{
-                  textAlign: "justify",
-                }}
-              >
-                {text}
-              </li>
-            ))}
-          </ul>
+            <ul
+              style={{
+                paddingLeft: 20,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+              }}
+            >
+              {(Array.isArray(item.desc) ? item.desc : [item.desc]).map(
+                (text, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      textAlign: "justify",
+                    }}
+                  >
+                    {text}
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
 
-          {item.desc.length > 2 && (
+          {Array.isArray(item.desc) && item.desc.length > 2 && (
             <button
               onClick={(e) => {
                 e.stopPropagation();

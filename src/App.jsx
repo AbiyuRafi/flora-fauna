@@ -1402,6 +1402,7 @@ export default function App() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
                 gap: 24,
+                alignItems: "start",
               }}
             >
               {BentangAlam.map((item) => (
@@ -1422,6 +1423,7 @@ export default function App() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
                 gap: 26,
+                alignItems: "start",
               }}
             >
               {FLORA.map((item) => (
@@ -1442,6 +1444,7 @@ export default function App() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))",
                 gap: 22,
+                alignItems: "start",
               }}
             >
               {FAUNA.map((item) => (
