@@ -3,7 +3,7 @@ import Lutung from "../assets/images/lutung/lutung.JPG";
 import MerakHijau from "../assets/images/merak_hijau/merak_hijau.jpeg";
 import RusaTimor from "../assets/images/rusa_timor/rusa_timor.jpeg";
 import Ajag from "../assets/images/ajag/ajag.jpg";
-import MacanTutul from "../assets/images/macan_tutul/macan_tutul.jpg";
+import MacanTutul from "../assets/images/macan_tutul/Macan_tutul.jpg";
 
 export const Fauna = [
   {
