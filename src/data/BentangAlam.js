@@ -2,7 +2,7 @@ import Mangrove1 from "../assets/images/mangrove/mangrove1.jpg";
 import Bengbeng1 from "../assets/images/pantai_bengbeng/bengbeng1.JPG";
 import Bilik1 from "../assets/images/pantai_bilik/bilik1.jpeg";
 import Jeding1 from "../assets/images/pantai_jeding/jeding1.jpg";
-import Sijile1 from "../assets/images/pantai_sijile/sijile1.jpg";
+import Sijile1 from "../assets/images/pantai_sijile/Sijile1.jpg";
 import SaltFlats1 from "../assets/images/salt_flats/saltflats1.png";
 import SavanaBilik1 from "../assets/images/savana_bilik_sijile/savanabilik1.png";
 import SavanaCangkring1 from "../assets/images/savana_cangkring/savanacangkring1.JPG";
