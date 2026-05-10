@@ -23,6 +23,7 @@ export const BentangAlam = [
         "Studio Alam Eksklusif: Perpaduan antara air teluk yang jernih, struktur akar mangrove yang rumit, dan dedaunan hijau yang rimbun menciptakan lanskap yang indah. Ini adalah spot foto bertema alam liar yang sangat eksklusif bagi para pengunjung.",
     ],
 },
+
 {
     id: 2,
     name: "Pantai Bengbeng",
