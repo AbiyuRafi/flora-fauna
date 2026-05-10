@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-export default function FloraCard({ item, onClick, C = {} }) {
+export default function BentangAlamCard({ item, onClick, C = {} }) {
   const [hov, setHov] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const cardRef = useRef(null);
 
   const collapsedHeight = 170;
 
   return (
     <div
+      ref={cardRef}
       onClick={() => onClick(item)}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -25,13 +27,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
       }}
     >
       {/* IMAGE */}
-      <div
-        style={{
-          position: "relative",
-          height: 240,
-          overflow: "hidden",
-        }}
-      >
+      <div style={{ position: "relative", height: 240, overflow: "hidden" }}>
         <img
           src={item.img}
           alt={item.name}
@@ -45,13 +41,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
         />
 
         {/* CATEGORY */}
-        <div
-          style={{
-            position: "absolute",
-            top: 14,
-            left: 14,
-          }}
-        >
+        <div style={{ position: "absolute", top: 14, left: 14 }}>
           <span
             style={{
               background: "rgba(255,255,255,0.92)",
@@ -65,7 +55,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
               backdropFilter: "blur(10px)",
             }}
           >
-            🏝️ {item.category}
+            🌿 {item.category}
           </span>
         </div>
 
@@ -81,12 +71,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
 
         {/* REGION */}
         <div
-          style={{
-            position: "absolute",
-            bottom: 16,
-            left: 16,
-            right: 16,
-          }}
+          style={{ position: "absolute", bottom: 16, left: 16, right: 16 }}
         >
           <p
             style={{
@@ -141,12 +126,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
             >
               {(Array.isArray(item.desc) ? item.desc : [item.desc]).map(
                 (text, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      textAlign: "justify",
-                    }}
-                  >
+                  <li key={index} style={{ textAlign: "justify" }}>
                     {text}
                   </li>
                 ),
@@ -158,6 +138,13 @@ export default function FloraCard({ item, onClick, C = {} }) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
+                if (showMore) {
+                  // ← saat collapse, scroll ke card
+                  cardRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
                 setShowMore(!showMore);
               }}
               style={{
@@ -185,13 +172,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
             alignItems: "center",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              flexWrap: "wrap",
-            }}
-          >
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {item.tags?.map((tag, idx) => (
               <span
                 key={idx}

@@ -3,6 +3,8 @@ import BentangAlamCard from "./components/BentangAlamCard";
 import { BentangAlam } from "./data/BentangAlam";
 import FloraCard from "./components/FloraCard";
 import { Flora } from "./data/Flora";
+import FaunaCard from "./components/FaunaCard";
+import { Fauna } from "./data/Fauna";
 import hero_mangrove from "./assets/hero_mangrove.JPG";
 import { useRef } from "react";
 
@@ -57,80 +59,6 @@ const HERO_SLIDES = [
   },
 ];
 
-const FAUNA = [
-  {
-    id: 1,
-    name: "Komodo",
-    latin: "Varanus komodoensis",
-    category: "Reptil",
-    status: "Rentan",
-    region: "Pulau Komodo",
-    img: "https://images.unsplash.com/photo-1559548331-f9cb98280344?w=600&q=80",
-    desc: "Kadal terbesar di dunia, predator puncak yang hanya ada di Kepulauan Nusa Tenggara.",
-    sc: "#b56e10",
-    sbg: "#fff3dc",
-  },
-  {
-    id: 2,
-    name: "Orangutan Sumatera",
-    latin: "Pongo abelii",
-    category: "Primata",
-    status: "Kritis",
-    region: "Sumatera",
-    img: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=600&q=80",
-    desc: "Primata arboreal cerdas yang berbagi 97% DNA dengan manusia, terancam punah akibat deforestasi.",
-    sc: "#8b1a1a",
-    sbg: "#fde8e8",
-  },
-  {
-    id: 3,
-    name: "Harimau Sumatera",
-    latin: "Panthera tigris sumatrae",
-    category: "Mamalia",
-    status: "Kritis",
-    region: "Sumatera",
-    img: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=600&q=80",
-    desc: "Subspesies harimau terkecil yang masih bertahan, simbol kekuatan alam Indonesia.",
-    sc: "#8b1a1a",
-    sbg: "#fde8e8",
-  },
-  {
-    id: 4,
-    name: "Cendrawasih",
-    latin: "Paradisaea apoda",
-    category: "Burung",
-    status: "Aman",
-    region: "Papua",
-    img: "https://images.unsplash.com/photo-1552727131-5fc6af00c5e1?w=600&q=80",
-    desc: "Burung surga Papua dengan bulu yang paling indah di dunia, simbol keajaiban alam timur.",
-    sc: "#1a5e2a",
-    sbg: "#d8f5e0",
-  },
-  {
-    id: 5,
-    name: "Penyu Belimbing",
-    latin: "Dermochelys coriacea",
-    category: "Reptil",
-    status: "Rentan",
-    region: "Lautan Indonesia",
-    img: "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=600&q=80",
-    desc: "Penyu terbesar di dunia yang bermigrasi ribuan kilometer melintasi Samudra Pasifik.",
-    sc: "#1a4a7a",
-    sbg: "#ddeef8",
-  },
-  {
-    id: 6,
-    name: "Badak Jawa",
-    latin: "Rhinoceros sondaicus",
-    category: "Mamalia",
-    status: "Kritis",
-    region: "Jawa",
-    img: "https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=600&q=80",
-    desc: "Salah satu mamalia paling langka di dunia, hanya sekitar 70 ekor tersisa di Ujung Kulon.",
-    sc: "#8b1a1a",
-    sbg: "#fde8e8",
-  },
-];
 
 const VIDEOS = [
   {
@@ -253,122 +181,6 @@ function Divider({ light }) {
     </div>
   );
 }
-
-/* ─── FAUNA CARD ─────────────────────────────────────────────────── */
-function FaunaCard({ item, onClick }) {
-  const [hov, setHov] = useState(false);
-  return (
-    <div
-      onClick={() => onClick(item)}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        display: "flex",
-        borderRadius: 20,
-        overflow: "hidden",
-        cursor: "pointer",
-        background: C.cream,
-        border: `1.5px solid ${hov ? C.brownLight : "#ddd0bc"}`,
-        boxShadow: hov
-          ? "0 18px 50px rgba(74,46,26,0.18)"
-          : "0 4px 16px rgba(74,46,26,0.09)",
-        transform: hov ? "translateY(-6px)" : "translateY(0)",
-        transition: "all 0.3s ease",
-        minHeight: 178,
-      }}
-    >
-      <div style={{ width: 155, minWidth: 155, overflow: "hidden" }}>
-        <img
-          src={item.img}
-          alt={item.name}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: hov ? "scale(1.08)" : "scale(1)",
-            transition: "transform 0.5s ease",
-          }}
-        />
-      </div>
-      <div style={{ padding: "16px 18px", flex: 1 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 8,
-            gap: 8,
-          }}
-        >
-          <div>
-            <h3
-              style={{
-                fontSize: 15.5,
-                fontWeight: 800,
-                color: C.brownDark,
-                margin: "0 0 2px",
-              }}
-            >
-              {item.name}
-            </h3>
-            <p
-              style={{
-                fontSize: 11.5,
-                color: C.brownMid,
-                fontStyle: "italic",
-                margin: 0,
-              }}
-            >
-              {item.latin}
-            </p>
-          </div>
-          <span
-            style={{
-              background: item.sbg,
-              color: item.sc,
-              border: `1px solid ${item.sc}44`,
-              borderRadius: 20,
-              padding: "3px 10px",
-              fontSize: 10.5,
-              fontWeight: 800,
-              letterSpacing: 0.5,
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-              flexShrink: 0,
-            }}
-          >
-            {item.status}
-          </span>
-        </div>
-        <p
-          style={{
-            fontSize: 12,
-            color: C.greenBase,
-            fontWeight: 600,
-            marginBottom: 8,
-          }}
-        >
-          🐾 {item.category} · 📍 {item.region}
-        </p>
-        <p
-          style={{
-            fontSize: 13,
-            color: C.textMid,
-            lineHeight: 1.62,
-            margin: 0,
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {item.desc}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 /* ─── VIDEO CARD ─────────────────────────────────────────────────── */
 function VideoCard({ item }) {
   const [hov, setHov] = useState(false);
@@ -1345,7 +1157,7 @@ export default function App() {
                   alignItems: "start",
                 }}
               >
-                {(showAll ? FAUNA : FAUNA.slice(0, 6)).map((item) => (
+                {(showAll ? Fauna : Fauna.slice(0, 6)).map((item) => (
                   <FaunaCard
                     key={item.id}
                     item={item}
@@ -1358,7 +1170,7 @@ export default function App() {
                 ))}
               </div>
 
-              {FAUNA.length > 6 && (
+              {Fauna.length > 6 && (
                 <div
                   style={{
                     display: "flex",
