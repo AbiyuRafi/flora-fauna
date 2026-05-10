@@ -33,9 +33,9 @@ const NAV_LINKS = [
   "Bentang Alam",
   "Flora",
   "Fauna",
-  "Ekosistem",
   "Galeri",
   "Video",
+  "Ekosistem",
 ];
 
 const HERO_SLIDES = [
@@ -58,7 +58,6 @@ const HERO_SLIDES = [
     tag: "Flora",
   },
 ];
-
 
 const VIDEOS = [
   {
@@ -587,7 +586,7 @@ export default function App() {
   // Scroll ke #biodiversity saat showAll jadi false
   useEffect(() => {
     if (scrollBack && !showAll) {
-      const el = document.getElementById("biodiversity");
+      const el = document.getElementById("bentang-alam");
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
@@ -651,16 +650,52 @@ export default function App() {
           </div>
           <div className="desk-nav" style={{ display: "flex", gap: 4 }}>
             {NAV_LINKS.map((l) => (
-              <a
+              <button
                 key={l}
-                href={`#${l.toLowerCase()}`}
+                onClick={() => {
+                  // FLORA
+                  if (l === "Flora") {
+                    setActiveTab("Flora");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // FAUNA
+                  else if (l === "Fauna") {
+                    setActiveTab("Fauna");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // BENTANG ALAM
+                  else if (l === "Bentang Alam") {
+                    setActiveTab("Bentang Alam");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // SECTION LAIN
+                  else {
+                    document
+                      .getElementById(l.toLowerCase().replace(/\s+/g, "-"))
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 style={{
                   color: "rgba(255,255,255,0.82)",
-                  textDecoration: "none",
+                  background: "transparent",
+                  border: "none",
                   padding: "7px 15px",
                   borderRadius: 30,
                   fontSize: 13.5,
                   fontWeight: 500,
+                  cursor: "pointer",
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
@@ -673,7 +708,7 @@ export default function App() {
                 }}
               >
                 {l}
-              </a>
+              </button>
             ))}
           </div>
           <button
@@ -810,7 +845,7 @@ export default function App() {
             }}
           >
             <a
-              href="#biodiversity"
+              href="#bentang-alam"
               onClick={() => setActiveTab("Bentang Alam")}
               style={{
                 background: C.brownLight,
@@ -939,7 +974,7 @@ export default function App() {
 
       {/* FLORA / FAUNA */}
       <section
-        id="biodiversity"
+        id="bentang-alam"
         style={{
           padding: "88px 5%",
           background: C.greenBg,
@@ -1152,7 +1187,7 @@ export default function App() {
                 id="fauna"
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
                   gap: 22,
                   alignItems: "start",
                 }}

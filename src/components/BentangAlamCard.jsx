@@ -70,9 +70,7 @@ export default function BentangAlamCard({ item, onClick, C = {} }) {
         />
 
         {/* REGION */}
-        <div
-          style={{ position: "absolute", bottom: 16, left: 16, right: 16 }}
-        >
+        <div style={{ position: "absolute", bottom: 16, left: 16, right: 16 }}>
           <p
             style={{
               color: "rgba(255,255,255,0.92)",
