@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function BentangAlamCard({ item, onClick, C }) {
+export default function FloraCard({ item, onClick, C = {} }) {
   const [hov, setHov] = useState(false);
   const [showMore, setShowMore] = useState(false);
 

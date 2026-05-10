@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import BentangAlamCard from "./components/BentangAlamCard";
 import { BentangAlam } from "./data/BentangAlam";
+import FloraCard from "./components/FloraCard";
+import { Flora } from "./data/Flora";
 import hero_mangrove from "./assets/hero_mangrove.JPG";
+import { useRef } from "react";
 
 const C = {
   greenDark: "#1b3a2d", // navbar, footer
@@ -51,75 +54,6 @@ const HERO_SLIDES = [
     title: "Taman Bunga Abadi",
     subtitle: "Keanekaragaman hayati yang tak ternilai",
     tag: "Flora",
-  },
-];
-
-const FLORA = [
-  {
-    id: 1,
-    name: "Rafflesia Arnoldii",
-    latin: "Rafflesia arnoldii",
-    category: "Bunga Langka",
-    region: "Sumatera",
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80",
-    desc: "Bunga terbesar di dunia dengan diameter hingga 1 meter, tumbuh di hutan hujan Sumatera.",
-    bbg: "#7a1a1a",
-    btx: "#fde8e8",
-  },
-  {
-    id: 2,
-    name: "Anggrek Hitam",
-    latin: "Coelogyne pandurata",
-    category: "Anggrek",
-    region: "Kalimantan",
-    img: "https://images.unsplash.com/photo-1490750967868-88df5691cc44?w=600&q=80",
-    desc: "Anggrek endemik Kalimantan yang memiliki labellum berwarna hitam kehijauan yang memukau.",
-    bbg: "#1b3a2d",
-    btx: "#c8e6c9",
-  },
-  {
-    id: 3,
-    name: "Kantong Semar",
-    latin: "Nepenthes rajah",
-    category: "Karnivora",
-    region: "Borneo",
-    img: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&q=80",
-    desc: "Tanaman karnivora raksasa yang mampu menampung hingga 3,5 liter cairan pencerna.",
-    bbg: "#7a4f2e",
-    btx: "#fdf0e0",
-  },
-  {
-    id: 4,
-    name: "Bunga Bangkai",
-    latin: "Amorphophallus titanum",
-    category: "Bunga Langka",
-    region: "Sumatera",
-    img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600&q=80",
-    desc: "Bunga dengan perbungaan tertinggi di dunia, hanya mekar beberapa hari dalam beberapa tahun.",
-    bbg: "#4a1a5e",
-    btx: "#ead5f7",
-  },
-  {
-    id: 5,
-    name: "Pohon Meranti",
-    latin: "Shorea leprosula",
-    category: "Pohon",
-    region: "Seluruh Indonesia",
-    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80",
-    desc: "Pohon hutan tropis yang dapat mencapai ketinggian 70 meter, penopang ekosistem hutan.",
-    bbg: "#1a3a5c",
-    btx: "#ddeef8",
-  },
-  {
-    id: 6,
-    name: "Melati Putih",
-    latin: "Jasminum sambac",
-    category: "Bunga Nasional",
-    region: "Seluruh Indonesia",
-    img: "https://images.unsplash.com/photo-1490750967868-88df5691cc44?w=600&q=80",
-    desc: "Bunga nasional Indonesia yang melambangkan kesucian, simbol budaya dan tradisi bangsa.",
-    bbg: "#7a5a00",
-    btx: "#fff8dc",
   },
 ];
 
@@ -316,138 +250,6 @@ function Divider({ light }) {
           borderRadius: 2,
         }}
       />
-    </div>
-  );
-}
-
-/* ─── FLORA CARD ─────────────────────────────────────────────────── */
-function FloraCard({ item, onClick }) {
-  const [hov, setHov] = useState(false);
-  return (
-    <div
-      onClick={() => onClick(item)}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        borderRadius: 22,
-        overflow: "hidden",
-        cursor: "pointer",
-        background: C.cream,
-        border: `1.5px solid ${hov ? C.brownLight : "#ddd0bc"}`,
-        boxShadow: hov
-          ? "0 22px 56px rgba(74,46,26,0.18)"
-          : "0 4px 18px rgba(74,46,26,0.09)",
-        transform: hov ? "translateY(-8px)" : "translateY(0)",
-        transition: "all 0.35s cubic-bezier(.4,0,.2,1)",
-      }}
-    >
-      <div style={{ position: "relative", height: 220, overflow: "hidden" }}>
-        <img
-          src={item.img}
-          alt={item.name}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: hov ? "scale(1.07)" : "scale(1)",
-            transition: "transform 0.55s ease",
-          }}
-        />
-        <div style={{ position: "absolute", top: 12, left: 12 }}>
-          <span
-            style={{
-              background: item.bbg,
-              color: item.btx,
-              borderRadius: 20,
-              padding: "3px 12px",
-              fontSize: 10.5,
-              fontWeight: 800,
-              letterSpacing: 0.6,
-              textTransform: "uppercase",
-            }}
-          >
-            {item.category}
-          </span>
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            background: "linear-gradient(transparent, rgba(27,58,45,0.75))",
-            padding: "36px 16px 14px",
-          }}
-        >
-          <p
-            style={{
-              color: "rgba(255,255,255,0.88)",
-              fontSize: 11.5,
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            📍 {item.region}
-          </p>
-        </div>
-      </div>
-      <div style={{ padding: "18px 20px 22px" }}>
-        <h3
-          style={{
-            fontSize: 17,
-            fontWeight: 800,
-            color: C.brownDark,
-            margin: "0 0 3px",
-          }}
-        >
-          {item.name}
-        </h3>
-        <p
-          style={{
-            fontSize: 12,
-            color: C.brownMid,
-            fontStyle: "italic",
-            margin: "0 0 10px",
-          }}
-        >
-          {item.latin}
-        </p>
-        <p
-          style={{
-            fontSize: 13.5,
-            color: C.textMid,
-            lineHeight: 1.65,
-            margin: 0,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {item.desc}
-        </p>
-        <div
-          style={{
-            marginTop: 14,
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            color: C.greenBase,
-            fontSize: 12.5,
-            fontWeight: 700,
-          }}
-        >
-          <span>Lihat Detail</span>
-          <span
-            style={{
-              transition: "transform 0.2s",
-              transform: hov ? "translateX(5px)" : "translateX(0)",
-            }}
-          >
-            →
-          </span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -966,6 +768,19 @@ export default function App() {
   const [modalType, setModalType] = useState("");
   const [mobileMenu, setMobileMenu] = useState(false);
   const scrollY = useScrollY();
+  const [showAll, setShowAll] = useState(false);
+  const gridTopRef = useRef(null);
+  const [scrollBack, setScrollBack] = useState(false);
+
+  // Scroll ke #biodiversity saat showAll jadi false
+  useEffect(() => {
+    if (scrollBack && !showAll) {
+      const el = document.getElementById("biodiversity");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [showAll, scrollBack]);
 
   useEffect(() => {
     const t = setInterval(
@@ -1313,7 +1128,11 @@ export default function App() {
       {/* FLORA / FAUNA */}
       <section
         id="biodiversity"
-        style={{ padding: "88px 5%", background: C.greenBg }}
+        style={{
+          padding: "88px 5%",
+          background: C.greenBg,
+          scrollMarginTop: 80,
+        }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
@@ -1397,67 +1216,183 @@ export default function App() {
 
           {/* BENTANG ALAM */}
           {activeTab === "Bentang Alam" ? (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-                gap: 24,
-                alignItems: "start",
-              }}
-            >
-              {BentangAlam.map((item) => (
-                <BentangAlamCard
-                  key={item.id}
-                  item={item}
-                  C={C}
-                  onClick={(i) => {
-                    setModal(i);
-                    setModalType("bentang");
+            <>
+              <div
+                ref={gridTopRef}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+                  gap: 24,
+                  alignItems: "start",
+                }}
+              >
+                {(showAll ? BentangAlam : BentangAlam.slice(0, 6)).map(
+                  (item) => (
+                    <BentangAlamCard
+                      key={item.id}
+                      item={item}
+                      C={C}
+                      onClick={(i) => {
+                        setModal(i);
+                        setModalType("bentang");
+                      }}
+                    />
+                  ),
+                )}
+              </div>
+
+              {BentangAlam.length > 6 && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 42,
                   }}
-                />
-              ))}
-            </div>
+                >
+                  <button
+                    onClick={() => {
+                      if (showAll) {
+                        setScrollBack(true);
+                        setShowAll(false);
+                      } else {
+                        setShowAll(true);
+                      }
+                    }}
+                    style={{
+                      padding: "14px 34px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: C.greenDark,
+                      color: "#fff",
+                      fontWeight: 800,
+                      fontSize: 14,
+                      cursor: "pointer",
+                      boxShadow: "0 10px 24px rgba(0,0,0,0.15)",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {showAll ? "Lihat Lebih Sedikit" : "Lihat Semua"}
+                  </button>
+                </div>
+              )}
+            </>
           ) : activeTab === "Flora" ? (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-                gap: 26,
-                alignItems: "start",
-              }}
-            >
-              {FLORA.map((item) => (
-                <FloraCard
-                  key={item.id}
-                  item={item}
-                  onClick={(i) => {
-                    setModal(i);
-                    setModalType("flora");
+            <>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+                  gap: 26,
+                  alignItems: "start",
+                }}
+              >
+                {(showAll ? Flora : Flora.slice(0, 6)).map((item) => (
+                  <FloraCard
+                    key={item.id}
+                    item={item}
+                    C={C}
+                    onClick={(i) => {
+                      setModal(i);
+                      setModalType("flora");
+                    }}
+                  />
+                ))}
+              </div>
+
+              {Flora.length > 6 && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 42,
                   }}
-                />
-              ))}
-            </div>
+                >
+                  <button
+                    onClick={() => {
+                      if (showAll) {
+                        setScrollBack(true);
+                        setShowAll(false);
+                      } else {
+                        setShowAll(true);
+                      }
+                    }}
+                    style={{
+                      padding: "14px 34px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: C.greenDark,
+                      color: "#fff",
+                      fontWeight: 800,
+                      fontSize: 14,
+                      cursor: "pointer",
+                      boxShadow: "0 10px 24px rgba(0,0,0,0.15)",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {showAll ? "Lihat Lebih Sedikit" : "Lihat Semua"}
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
-            <div
-              id="fauna"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))",
-                gap: 22,
-                alignItems: "start",
-              }}
-            >
-              {FAUNA.map((item) => (
-                <FaunaCard
-                  key={item.id}
-                  item={item}
-                  onClick={(i) => {
-                    setModal(i);
-                    setModalType("fauna");
+            <>
+              <div
+                id="fauna"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(370px, 1fr))",
+                  gap: 22,
+                  alignItems: "start",
+                }}
+              >
+                {(showAll ? FAUNA : FAUNA.slice(0, 6)).map((item) => (
+                  <FaunaCard
+                    key={item.id}
+                    item={item}
+                    C={C}
+                    onClick={(i) => {
+                      setModal(i);
+                      setModalType("fauna");
+                    }}
+                  />
+                ))}
+              </div>
+
+              {FAUNA.length > 6 && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 42,
                   }}
-                />
-              ))}
-            </div>
+                >
+                  <button
+                    onClick={() => {
+                      if (showAll) {
+                        setScrollBack(true);
+                        setShowAll(false);
+                      } else {
+                        setShowAll(true);
+                      }
+                    }}
+                    style={{
+                      padding: "14px 34px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: C.greenDark,
+                      color: "#fff",
+                      fontWeight: 800,
+                      fontSize: 14,
+                      cursor: "pointer",
+                      boxShadow: "0 10px 24px rgba(0,0,0,0.15)",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {showAll ? "Lihat Lebih Sedikit" : "Lihat Semua"}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
