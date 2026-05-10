@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import hero_mangrove from "./assets/hero_mangrove.jpg";
+import hero_mangrove from "./assets/hero_mangrove.JPG";
 
 const C = {
   greenDark: "#1b3a2d", // navbar, footer
