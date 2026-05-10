@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function BentangAlamCard({ item, onClick, C }) {
   const [hov, setHov] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div
@@ -111,20 +112,62 @@ export default function BentangAlamCard({ item, onClick, C }) {
           {item.name}
         </h3>
 
-        <p
+        {/* DESCRIPTION */}
+        <div
           style={{
-            fontSize: 14,
+            marginTop: 6,
             color: C.textMid,
-            lineHeight: 1.7,
-            margin: 0,
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
+            fontSize: 14,
+            lineHeight: 1.8,
           }}
         >
-          {item.desc}
-        </p>
+          <ul
+            style={{
+              paddingLeft: 20,
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+            }}
+          >
+            {(Array.isArray(item.desc)
+              ? showMore
+                ? item.desc
+                : item.desc.slice(0, 2)
+              : [item.desc]
+            ).map((text, index) => (
+              <li
+                key={index}
+                style={{
+                  textAlign: "justify",
+                }}
+              >
+                {text}
+              </li>
+            ))}
+          </ul>
+
+          {item.desc.length > 2 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowMore(!showMore);
+              }}
+              style={{
+                marginTop: 12,
+                border: "none",
+                background: "transparent",
+                color: C.greenDark,
+                fontWeight: 700,
+                cursor: "pointer",
+                fontSize: 13,
+                padding: 0,
+              }}
+            >
+              {showMore ? "Tampilkan Lebih Sedikit" : "Selengkapnya"}
+            </button>
+          )}
+        </div>
 
         {/* FOOTER */}
         <div

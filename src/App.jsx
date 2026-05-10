@@ -54,7 +54,6 @@ const HERO_SLIDES = [
   },
 ];
 
-
 const FLORA = [
   {
     id: 1,
@@ -764,11 +763,14 @@ function GalleryItem({ item, index }) {
 function Modal({ item, type, onClose }) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
+
   if (!item) return null;
+
   return (
     <div
       onClick={onClose}
@@ -792,12 +794,14 @@ function Modal({ item, type, onClose }) {
           maxWidth: 680,
           width: "100%",
           maxHeight: "90vh",
-          overflow: "auto",
+          overflowY: "auto",
+          scrollBehavior: "smooth",
           position: "relative",
           boxShadow: "0 40px 100px rgba(27,58,45,0.4)",
           border: `2px solid ${C.brownLight}`,
         }}
       >
+        {/* CLOSE BUTTON */}
         <button
           onClick={onClose}
           style={{
@@ -820,6 +824,8 @@ function Modal({ item, type, onClose }) {
         >
           ✕
         </button>
+
+        {/* IMAGE */}
         <img
           src={item.img}
           alt={item.name}
@@ -830,7 +836,10 @@ function Modal({ item, type, onClose }) {
             borderRadius: "26px 26px 0 0",
           }}
         />
+
+        {/* CONTENT */}
         <div style={{ padding: "26px 30px 32px" }}>
+          {/* STATUS */}
           {type === "fauna" && (
             <div style={{ marginBottom: 12 }}>
               <span
@@ -850,6 +859,8 @@ function Modal({ item, type, onClose }) {
               </span>
             </div>
           )}
+
+          {/* TITLE */}
           <h2
             style={{
               fontSize: 26,
@@ -860,6 +871,8 @@ function Modal({ item, type, onClose }) {
           >
             {item.name}
           </h2>
+
+          {/* LATIN NAME */}
           <p
             style={{
               fontSize: 14,
@@ -870,6 +883,8 @@ function Modal({ item, type, onClose }) {
           >
             {item.latin}
           </p>
+
+          {/* TAG INFO */}
           <div
             style={{
               display: "flex",
@@ -890,6 +905,7 @@ function Modal({ item, type, onClose }) {
             >
               📍 {item.region}
             </span>
+
             <span
               style={{
                 background: C.brownPale,
@@ -900,19 +916,42 @@ function Modal({ item, type, onClose }) {
                 fontWeight: 700,
               }}
             >
-              🏷️ {item.category || item.category}
+              🏷️ {item.category}
             </span>
           </div>
-          <p
+
+          {/* DESCRIPTION */}
+          <div
             style={{
-              fontSize: 15.5,
+              marginTop: 6,
               color: C.textDark,
-              lineHeight: 1.78,
-              margin: 0,
+              fontSize: 15.5,
+              lineHeight: 1.9,
             }}
           >
-            {item.desc}
-          </p>
+            <ul
+              style={{
+                paddingLeft: 24,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+              }}
+            >
+              {(Array.isArray(item.desc) ? item.desc : [item.desc]).map(
+                (text, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      textAlign: "justify",
+                    }}
+                  >
+                    {text}
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
