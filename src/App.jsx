@@ -736,20 +736,68 @@ export default function App() {
             }}
           >
             {NAV_LINKS.map((l) => (
-              <a
+              <button
                 key={l}
-                href={`#${l.toLowerCase()}`}
-                onClick={() => setMobileMenu(false)}
+                onClick={() => {
+                  setMobileMenu(false);
+
+                  // FLORA
+                  if (l === "Flora") {
+                    setActiveTab("Flora");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // FAUNA
+                  else if (l === "Fauna") {
+                    setActiveTab("Fauna");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // BENTANG ALAM
+                  else if (l === "Bentang Alam") {
+                    setActiveTab("Bentang Alam");
+
+                    document
+                      .getElementById("bentang-alam")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+
+                  // SECTION LAIN
+                  else {
+                    document
+                      .getElementById(l.toLowerCase().replace(/\s+/g, "-"))
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 style={{
                   display: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  background: "transparent",
+                  border: "none",
                   color: "rgba(255,255,255,0.85)",
-                  textDecoration: "none",
                   padding: "11px 24px",
                   fontSize: 14.5,
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(255,255,255,0.08)";
+                  e.target.style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "transparent";
+                  e.target.style.color = "rgba(255,255,255,0.85)";
                 }}
               >
                 {l}
-              </a>
+              </button>
             ))}
           </div>
         )}
