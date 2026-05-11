@@ -8,7 +8,7 @@ import MacanTutul from "../assets/images/macan_tutul/Macan_Tutul.jpg";
 export const Fauna = [
   {
     id: 20,
-    name: "Monyet Abu-abu",
+    name: "Monyet Ekor Panjang",
     category: "Fauna",
     region: "Situbondo, Jawa Timur",
     img: MonyetAbu,
