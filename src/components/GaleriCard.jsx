@@ -10,6 +10,8 @@ export default function GalleryCard({ item, index }) {
     { gridColumn: "3", gridRow: "2" },
     { gridColumn: "4", gridRow: "2" },
     { gridColumn: "1 / 3", gridRow: "3" },
+    { gridColumn: "3", gridRow: "3" },
+    { gridColumn: "4", gridRow: "3" },
   ];
 
   return (
@@ -17,7 +19,7 @@ export default function GalleryCard({ item, index }) {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        ...gs[index],
+        ...(gs[index] || {}),
         borderRadius: 16,
         overflow: "hidden",
         position: "relative",

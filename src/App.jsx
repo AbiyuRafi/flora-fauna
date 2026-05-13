@@ -482,6 +482,7 @@ export default function App() {
   const gridTopRef = useRef(null);
   const [scrollBack, setScrollBack] = useState(false);
   const [openGallery, setOpenGallery] = useState(false);
+  const [columns, setColumns] = useState(4);
 
   useEffect(() => {
     if (scrollBack && !showAll) {
@@ -501,6 +502,24 @@ export default function App() {
   }, []);
 
   const scrolled = scrollY > 60;
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setColumns(2);
+      } else if (window.innerWidth <= 1200) {
+        setColumns(3);
+      } else {
+        setColumns(4);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
@@ -1193,7 +1212,7 @@ export default function App() {
               gap: 12,
             }}
           >
-            {GALLERY.map((g, i) => (
+            {GALLERY.slice(0, 8).map((g, i) => (
               <GaleriCard key={i} item={g} index={i} />
             ))}
           </div>
@@ -1290,19 +1309,65 @@ export default function App() {
                 {/* GRID FULL */}
                 <div
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-                    gap: 16,
+                    columnCount: columns,
                   }}
                 >
                   {GALLERY.map((g, i) => (
                     <div
                       key={i}
                       style={{
-                        height: 260,
+                        breakInside: "avoid",
+                        marginBottom: 16,
+                        borderRadius: 22,
+                        overflow: "hidden",
+                        background: "#111",
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
                       }}
                     >
-                      <GaleriCard item={g} index={0} />
+                      <img
+                        src={g.img}
+                        alt={g.title || `gallery-${i}`}
+                        style={{
+                          width: "100%",
+                          display: "block",
+                          objectFit: "cover",
+                        }}
+                      />
+
+                      {(g.title || g.desc) && (
+                        <div
+                          style={{
+                            padding: 14,
+                            background: "#fff",
+                          }}
+                        >
+                          {g.title && (
+                            <h4
+                              style={{
+                                margin: "0 0 6px",
+                                fontSize: 15,
+                                fontWeight: 800,
+                                color: C.brownDark,
+                              }}
+                            >
+                              {g.title}
+                            </h4>
+                          )}
+
+                          {g.desc && (
+                            <p
+                              style={{
+                                margin: 0,
+                                fontSize: 13,
+                                lineHeight: 1.6,
+                                color: C.textMid,
+                              }}
+                            >
+                              {g.desc}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -1393,7 +1458,7 @@ export default function App() {
               >
                 <span style={{ fontSize: 22 }}>🌿</span>
                 <span style={{ fontSize: 17, fontWeight: 900, color: "#fff" }}>
-                  Flora<span style={{ color: C.brownLight }}>Fauna</span>
+                  Pesona<span style={{ color: C.brownLight }}>Labuhan </span>Merak
                 </span>
               </div>
               <p
@@ -1462,7 +1527,7 @@ export default function App() {
               fontSize: 12.5,
             }}
           >
-            © 2026 FloraFauna Indonesia
+            © 2026 Pesona Labuhan Merak. All rights reserved.
           </div>
         </div>
       </footer>

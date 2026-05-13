@@ -1,26 +1,51 @@
+import Img1 from "../assets/images/galeri/img1.jpg";
+import Img2 from "../assets/images/galeri/img2.JPG";
+import Img3 from "../assets/images/galeri/img3.png";
+import Img4 from "../assets/images/galeri/img4.jpg";
+import Img5 from "../assets/images/galeri/img5.jpeg";
+import Img6 from "../assets/images/galeri/img6.jpeg";
+import Img7 from "../assets/images/galeri/img7.jpeg";
+import Img8 from "../assets/images/galeri/img8.JPG";
+import Img9 from "../assets/images/galeri/img9.JPG";
+import Img10 from "../assets/images/galeri/img10.jpeg";
+import Img11 from "../assets/images/galeri/img11.jpg";
+import Img12 from "../assets/images/galeri/img12.jpg";
+
 export const GALLERY = [
   {
-    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
-    label: "Hutan Tropis",
+    img: Img1,
   },
   {
-    img: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&q=80",
-    label: "Satwa Liar",
+    img: Img2,
   },
   {
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80",
-    label: "Bunga Liar",
+    img: Img3,
   },
   {
-    img: "https://images.unsplash.com/photo-1559548331-f9cb98280344?w=400&q=80",
-    label: "Reptil",
+    img: Img4,
   },
   {
-    img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
-    label: "Flora Eksotis",
+    img: Img5,
   },
   {
-    img: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
-    label: "Cahaya Hutan",
+    img: Img6,
+  },
+  {
+    img: Img7,
+  },
+  {
+    img: Img8,
+  },
+  {
+    img: Img9,
+  },
+  {
+    img: Img10,
+  },
+  {
+    img: Img11,
+  },
+  {
+    img: Img12,
   },
 ];
