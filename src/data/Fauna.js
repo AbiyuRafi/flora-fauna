@@ -10,6 +10,7 @@ export const Fauna = [
     id: 20,
     name: "Monyet Ekor Panjang",
     category: "Fauna",
+    latin: "Macaca fascicularis",
     region: "Situbondo, Jawa Timur",
     img: MonyetAbu,
     desc: [
@@ -27,6 +28,7 @@ export const Fauna = [
     id: 21,
     name: "Lutung Jawa",
     category: "Fauna",
+    latin: "Trachypithecus auratus",
     region: "Situbondo, Jawa Timur",
     img: Lutung,
     desc: [
@@ -42,6 +44,7 @@ export const Fauna = [
     id: 22,
     name: "Merak Hijau",
     category: "Fauna",
+    latin: "Pavo muticus",
     region: "Situbondo, Jawa Timur",
     img: MerakHijau,
     desc: [
@@ -57,6 +60,7 @@ export const Fauna = [
     id: 23,
     name: "Rusa Timor",
     category: "Fauna",
+    latin: "Cervus timorensis",
     region: "Situbondo, Jawa Timur",
     img: RusaTimor,
     desc: [
@@ -72,6 +76,7 @@ export const Fauna = [
     id: 24,
     name: "Ajag",
     category: "Fauna",
+    latin: "Cuon alpinus",
     region: "Situbondo, Jawa Timur",
     img: Ajag,
     desc: [
@@ -88,6 +93,7 @@ export const Fauna = [
     id: 25,
     name: "Macan Tutul Jawa",
     category: "Fauna",
+    latin: "Panthera pardus melas",
     region: "Situbondo, Jawa Timur",
     img: MacanTutul,
     desc: [

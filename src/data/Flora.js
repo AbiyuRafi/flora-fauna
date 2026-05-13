@@ -17,6 +17,7 @@ export const Flora = [
         id: 9,
         name: "Santigi",
         category: "Flora",
+        latin: "Pemphis acidula",
         region: "Situbondo, Jawa Timur",
         img: Santigi,
         desc: [
@@ -32,6 +33,7 @@ export const Flora = [
         id: 10,
         name: "Mojo/Maja",
         category: "Flora",
+        latin: "Aegle marmelos",
         region: "Situbondo, Jawa Timur",
         img: Mojo,
         desc: [
@@ -47,6 +49,7 @@ export const Flora = [
         id: 11,
         name: "Kesambi",
         category: "Flora",
+        latin: "Schleichera oleosa",
         region: "Situbondo, Jawa Timur",
         img: Kesambi,
         desc: [
@@ -62,6 +65,7 @@ export const Flora = [
         id: 12,
         name: "Palma Gebang",
         category: "Flora",
+        latin: "Corypha utan",
         region: "Situbondo, Jawa Timur",
         img: PalmaGebang,
         desc: [
@@ -77,6 +81,7 @@ export const Flora = [
         id: 13,
         name: "Waru Laut",
         category: "Flora",
+        latin: "Thespesia populnea",
         region: "Situbondo, Jawa Timur",
         img: WaruLaut,
         desc: [
@@ -92,6 +97,7 @@ export const Flora = [
         id: 14,
         name: "Ketapang",
         category: "Flora",
+        latin: "Terminalia catappa",
         region: "Situbondo, Jawa Timur",
         img: Ketapang,
         desc: [
@@ -107,6 +113,7 @@ export const Flora = [
         id: 15,
         name: "Pilang",
         category: "Flora",
+        latin: "Vachellia leucophloea",
         region: "Situbondo, Jawa Timur",
         img: Pilang,
         desc: [
@@ -123,6 +130,7 @@ export const Flora = [
         id: 16,
         name: "Serut",
         category: "Flora",
+        latin: "Streblus asper",
         region: "Situbondo, Jawa Timur",
         img: Serut,
         desc: [
@@ -139,6 +147,7 @@ export const Flora = [
         id: 17,
         name: "Mimbo/Mimba",
         category: "Flora",
+        latin: "Azadirachta indica",
         region: "Situbondo, Jawa Timur",
         img: Mimba,
         desc: [
@@ -154,6 +163,7 @@ export const Flora = [
         id: 18,
         name: "Soga Tingi/Tengar",
         category: "Flora",
+        latin: "Ceriops tagal",
         region: "Situbondo, Jawa Timur",
         img: SogaTingi,
         desc: [
@@ -169,6 +179,7 @@ export const Flora = [
         id: 19,
         name: "Bidara/Widoro Bekol",
         category: "Flora",
+        latin: "Ziziphus mauritiana",
         region: "Situbondo, Jawa Timur",
         img: Bidara,
         desc: [

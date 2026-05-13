@@ -3,13 +3,30 @@ import { useState, useRef } from "react";
 export default function FloraCard({ item, onClick, C = {} }) {
   const [hov, setHov] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const cardRef = useRef(null); // ← ref untuk card
+  const cardRef = useRef(null);
 
   const collapsedHeight = 170;
 
+  // fungsi italic untuk nama latin di dalam tanda kurung
+  const formatText = (text) => {
+    const match = text.match(/\((.*?)\)/);
+
+    if (!match) return text;
+
+    const latinName = match[1];
+    const normalText = text.replace(`(${latinName})`, "");
+
+    return (
+      <>
+        {normalText}
+        <i>({latinName})</i>
+      </>
+    );
+  };
+
   return (
     <div
-      ref={cardRef} // ← pasang ref di card
+      ref={cardRef}
       onClick={() => onClick(item)}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -86,16 +103,33 @@ export default function FloraCard({ item, onClick, C = {} }) {
 
       {/* CONTENT */}
       <div style={{ padding: "20px 22px 24px" }}>
+        {/* TITLE */}
         <h3
           style={{
             fontSize: 20,
             fontWeight: 800,
             color: C.brownDark,
-            margin: "0 0 12px",
+            margin: "0 0 6px",
+            lineHeight: 1.4,
           }}
         >
-          {item.name}
+          {formatText(item.name)}
         </h3>
+
+        {/* SCIENTIFIC NAME */}
+        {item.latin && (
+          <p
+            style={{
+              margin: "0 0 14px",
+              fontSize: 13,
+              color: "#6b7280",
+              fontStyle: "italic",
+              fontWeight: 500,
+            }}
+          >
+            {item.latin}
+          </p>
+        )}
 
         {/* DESCRIPTION */}
         <div
@@ -125,7 +159,7 @@ export default function FloraCard({ item, onClick, C = {} }) {
               {(Array.isArray(item.desc) ? item.desc : [item.desc]).map(
                 (text, index) => (
                   <li key={index} style={{ textAlign: "justify" }}>
-                    {text}
+                    {formatText(text)}
                   </li>
                 ),
               )}
@@ -136,13 +170,14 @@ export default function FloraCard({ item, onClick, C = {} }) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
+
                 if (showMore) {
-                  // ← saat collapse, scroll ke card
                   cardRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
                   });
                 }
+
                 setShowMore(!showMore);
               }}
               style={{

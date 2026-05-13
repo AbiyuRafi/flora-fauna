@@ -37,7 +37,6 @@ const NAV_LINKS = [
   "Fauna",
   "Galeri",
   "Video",
-  "Ekosistem",
 ];
 
 const HERO_SLIDES = [
@@ -62,15 +61,6 @@ const HERO_SLIDES = [
 ];
 
 const VIDEOS = [
-  {
-    id: 1,
-    title: "Hutan Hujan Tropis Indonesia",
-    duration: "12:34",
-    views: "2.3 Juta",
-    thumb:
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
-    category: "Ekosistem",
-  },
   {
     id: 2,
     title: "Kehidupan Bawah Laut Raja Ampat",
@@ -817,22 +807,6 @@ export default function App() {
             >
               Jelajahi Sekarang
             </a>
-            <a
-              href="#video"
-              style={{
-                background: "rgba(255,255,255,0.14)",
-                color: "#fff",
-                textDecoration: "none",
-                padding: "14px 38px",
-                borderRadius: 50,
-                fontSize: 14.5,
-                fontWeight: 700,
-                border: "2px solid rgba(255,255,255,0.38)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              ▶ Tonton Video
-            </a>
           </div>
         </div>
         <div
@@ -1391,161 +1365,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* EKOSISTEM */}
-      <section
-        id="ekosistem"
-        style={{ padding: "88px 5%", background: C.brownPale }}
-      >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 56,
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <Divider />
-              <span
-                style={{
-                  color: C.brownMid,
-                  fontSize: 12,
-                  fontWeight: 800,
-                  letterSpacing: 3,
-                  textTransform: "uppercase",
-                }}
-              >
-                Mengapa Penting
-              </span>
-              <h2
-                style={{
-                  fontSize: "clamp(26px,4vw,46px)",
-                  fontWeight: 900,
-                  margin: "14px 0 20px",
-                  letterSpacing: -0.5,
-                  lineHeight: 1.14,
-                  color: C.brownDark,
-                }}
-              >
-                Lindungi Ekosistem,
-                <br />
-                <span style={{ color: C.greenBase }}>Jaga Masa Depan</span>
-              </h2>
-              <p
-                style={{
-                  color: C.textMid,
-                  fontSize: 15.5,
-                  lineHeight: 1.82,
-                  marginBottom: 30,
-                }}
-              >
-                Indonesia memiliki 3 dari 25 biodiversity hotspot dunia. Hutan
-                tropisnya menyimpan lebih dari 10% keanekaragaman hayati dunia,
-                namun terancam oleh deforestasi dan perubahan iklim.
-              </p>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: 14,
-                }}
-              >
-                {[
-                  {
-                    icon: "🌳",
-                    title: "Hutan Hujan",
-                    sub: "Paru-paru dunia",
-                    bg: C.greenPale,
-                    br: "#b0d8b8",
-                  },
-                  {
-                    icon: "🌊",
-                    title: "Terumbu Karang",
-                    sub: "Surga bawah laut",
-                    bg: C.bluePale,
-                    br: "#a0c8e0",
-                  },
-                  {
-                    icon: "🦋",
-                    title: "Keanekaragaman",
-                    sub: "Jutaan spesies unik",
-                    bg: "#f0ead8",
-                    br: C.brownLight,
-                  },
-                  {
-                    icon: "🌱",
-                    title: "Konservasi",
-                    sub: "Pelestarian aktif",
-                    bg: C.greenPale,
-                    br: "#b0d8b8",
-                  },
-                ].map((f) => (
-                  <div
-                    key={f.title}
-                    style={{
-                      background: f.bg,
-                      borderRadius: 14,
-                      padding: "16px 18px",
-                      border: `1.5px solid ${f.br}`,
-                    }}
-                  >
-                    <div style={{ fontSize: 26, marginBottom: 6 }}>
-                      {f.icon}
-                    </div>
-                    <div
-                      style={{
-                        fontWeight: 800,
-                        color: C.brownDark,
-                        marginBottom: 2,
-                        fontSize: 14,
-                      }}
-                    >
-                      {f.title}
-                    </div>
-                    <div style={{ fontSize: 12.5, color: C.textMid }}>
-                      {f.sub}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ position: "relative" }}>
-              <img
-                src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
-                alt="Ekosistem"
-                style={{
-                  width: "100%",
-                  borderRadius: 24,
-                  boxShadow: "0 24px 72px rgba(27,58,45,0.22)",
-                  border: `3px solid ${C.brownLight}`,
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: -22,
-                  left: -22,
-                  background: C.greenDark,
-                  color: C.brownLight,
-                  borderRadius: 18,
-                  padding: "16px 24px",
-                  boxShadow: "0 10px 36px rgba(27,58,45,0.4)",
-                  border: `2px solid ${C.brownLight}`,
-                }}
-              >
-                <div style={{ fontSize: 28, fontWeight: 900 }}>40.000+</div>
-                <div
-                  style={{ fontSize: 12.5, color: C.greenPale, marginTop: 2 }}
-                >
-                  Spesies Tumbuhan
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FOOTER */}
       <footer
         style={{
@@ -1592,7 +1411,7 @@ export default function App() {
             {[
               {
                 title: "Eksplorasi",
-                links: ["Flora", "Fauna", "Ekosistem", "Galeri"],
+                links: ["Flora", "Fauna", "Galeri"],
               },
               {
                 title: "Informasi",
