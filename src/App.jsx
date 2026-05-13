@@ -5,24 +5,26 @@ import FloraCard from "./components/FloraCard";
 import { Flora } from "./data/Flora";
 import FaunaCard from "./components/FaunaCard";
 import { Fauna } from "./data/Fauna";
+import GaleriCard from "./components/GaleriCard";
+import { GALLERY } from "./data/Galeri";
 import hero_mangrove from "./assets/hero_mangrove.JPG";
 import { useRef } from "react";
 
 const C = {
-  greenDark: "#1b3a2d", // navbar, footer
-  greenMid: "#2d5a3d", // gallery section bg
-  greenBase: "#3a7a52", // primary accent / buttons
-  greenLight: "#5faa76", // hover highlights
-  greenPale: "#d4ead9", // pale tint text on dark
-  greenBg: "#e8f4ea", // ← main page background
-  brownDark: "#4a2e1a", // headings
-  brownMid: "#7a4f2e", // sub-labels
-  brownLight: "#c49a6c", // accent / CTA
-  brownPale: "#f5ede0", // ekosistem section bg
+  greenDark: "#1b3a2d",
+  greenMid: "#2d5a3d",
+  greenBase: "#3a7a52",
+  greenLight: "#5faa76",
+  greenPale: "#d4ead9",
+  greenBg: "#e8f4ea",
+  brownDark: "#4a2e1a",
+  brownMid: "#7a4f2e",
+  brownLight: "#c49a6c",
+  brownPale: "#f5ede0",
   blueDeep: "#1a3a5c",
   blueMid: "#2e6a9e",
   bluePale: "#ddeef8",
-  cream: "#faf7f0", // card surfaces
+  cream: "#faf7f0",
   textDark: "#1e2d1e",
   textMid: "#3d5c3d",
   textMuted: "#7a9a7a",
@@ -42,19 +44,19 @@ const HERO_SLIDES = [
   {
     img: hero_mangrove,
     title: "Bentang Alam Eksotis",
-    subtitle: "Pantai, laguna, dan pesona alam pesisir yang memukau",
+    subtitle: "Pantai, mangrove, hingga savana yang memukau",
     tag: "Bentang Alam",
   },
   {
     img: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1600&q=80",
-    title: "Dunia Satwa Liar",
-    subtitle: "Jutaan spesies menunggu untuk ditemukan",
+    title: "Rumah Satwa Liar",
+    subtitle: "Ribuan spesies hidup di Baluran",
     tag: "Fauna",
   },
   {
     img: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&q=80",
-    title: "Taman Bunga Abadi",
-    subtitle: "Keanekaragaman hayati yang tak ternilai",
+    title: "Keanekaragaman Flora",
+    subtitle: "Tumbuhan potensial yang kaya akan manfaat",
     tag: "Flora",
   },
 ];
@@ -99,39 +101,10 @@ const VIDEOS = [
 ];
 
 const STATS = [
-  { value: "17.000+", label: "Pulau Nusantara", icon: "🏝️" },
-  { value: "40.000+", label: "Spesies Tumbuhan", icon: "🌿" },
-  { value: "300.000+", label: "Spesies Hewan", icon: "🦁" },
-  { value: "10%", label: "Spesies Dunia", icon: "🌍" },
+  { value: "±42 KM", label: "Garis Pantai", icon: "🏝️" },
+  { value: "750", label: "Jenis Tumbuhan", icon: "🌿" },
+  { value: "47", label: "Spesies Fauna Dilindungi", icon: "🦁" },
 ];
-
-const GALLERY = [
-  {
-    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
-    label: "Hutan Tropis",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&q=80",
-    label: "Satwa Liar",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80",
-    label: "Bunga Liar",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1559548331-f9cb98280344?w=400&q=80",
-    label: "Reptil",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
-    label: "Flora Eksotis",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
-    label: "Cahaya Hutan",
-  },
-];
-
 function useScrollY() {
   const [y, setY] = useState(0);
   useEffect(() => {
@@ -308,70 +281,6 @@ function VideoCard({ item }) {
     </div>
   );
 }
-
-/* ─── GALLERY ITEM ───────────────────────────────────────────────── */
-function GalleryItem({ item, index }) {
-  const [hov, setHov] = useState(false);
-  const gs = [
-    { gridColumn: "1 / 3", gridRow: "1 / 3" },
-    { gridColumn: "3", gridRow: "1" },
-    { gridColumn: "4", gridRow: "1" },
-    { gridColumn: "3", gridRow: "2" },
-    { gridColumn: "4", gridRow: "2" },
-    { gridColumn: "1 / 3", gridRow: "3" },
-  ];
-  return (
-    <div
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        ...gs[index],
-        borderRadius: 16,
-        overflow: "hidden",
-        position: "relative",
-        cursor: "pointer",
-      }}
-    >
-      <img
-        src={item.img}
-        alt={item.label}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          transform: hov ? "scale(1.08)" : "scale(1)",
-          transition: "transform 0.5s ease",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: hov ? "rgba(27,58,45,0.52)" : "rgba(27,58,45,0.14)",
-          transition: "background 0.35s ease",
-          display: "flex",
-          alignItems: "flex-end",
-          padding: 14,
-        }}
-      >
-        <span
-          style={{
-            color: "#fff",
-            fontWeight: 800,
-            fontSize: 13,
-            opacity: hov ? 1 : 0,
-            transform: hov ? "translateY(0)" : "translateY(10px)",
-            transition: "all 0.3s ease",
-            textShadow: "0 2px 8px rgba(0,0,0,0.5)",
-          }}
-        >
-          {item.label}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 /* ─── MODAL ──────────────────────────────────────────────────────── */
 function Modal({ item, type, onClose }) {
   useEffect(() => {
@@ -582,8 +491,8 @@ export default function App() {
   const [showAll, setShowAll] = useState(false);
   const gridTopRef = useRef(null);
   const [scrollBack, setScrollBack] = useState(false);
+  const [openGallery, setOpenGallery] = useState(false);
 
-  // Scroll ke #biodiversity saat showAll jadi false
   useEffect(() => {
     if (scrollBack && !showAll) {
       const el = document.getElementById("bentang-alam");
@@ -1298,64 +1207,10 @@ export default function App() {
         style={{ padding: "80px 5%", background: C.greenMid }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                justifyContent: "center",
-                marginBottom: 14,
-              }}
-            >
-              <div
-                style={{
-                  height: 2,
-                  width: 30,
-                  background: C.brownLight,
-                  borderRadius: 2,
-                }}
-              />
-              <div
-                style={{
-                  height: 6,
-                  width: 6,
-                  borderRadius: "50%",
-                  background: C.brownLight,
-                }}
-              />
-              <div
-                style={{
-                  height: 2,
-                  width: 30,
-                  background: C.brownLight,
-                  borderRadius: 2,
-                }}
-              />
-            </div>
-            <span
-              style={{
-                color: C.brownLight,
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-              }}
-            >
-              Galeri Foto
-            </span>
-            <h2
-              style={{
-                fontSize: "clamp(28px,5vw,50px)",
-                fontWeight: 900,
-                margin: "14px 0 0",
-                color: C.greenPale,
-                letterSpacing: -1,
-              }}
-            >
-              Keindahan Alam Indonesia
-            </h2>
-          </div>
+          {/* HEADER */}
+          <div style={{ textAlign: "center", marginBottom: 48 }}>...</div>
+
+          {/* GRID */}
           <div
             style={{
               display: "grid",
@@ -1365,9 +1220,121 @@ export default function App() {
             }}
           >
             {GALLERY.map((g, i) => (
-              <GalleryItem key={i} item={g} index={i} />
+              <GaleriCard key={i} item={g} index={i} />
             ))}
           </div>
+
+          {/* BUTTON */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: 40,
+            }}
+          >
+            <button
+              onClick={() => setOpenGallery(true)}
+              style={{
+                padding: "14px 30px",
+                borderRadius: 999,
+                border: "none",
+                background: C.brownLight,
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: 15,
+                cursor: "pointer",
+                transition: "0.3s ease",
+                boxShadow: "0 10px 24px rgba(0,0,0,0.2)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              Lihat Semua →
+            </button>
+          </div>
+
+          {/* MODAL */}
+          {openGallery && (
+            <div
+              onClick={() => setOpenGallery(false)}
+              style={{
+                position: "fixed",
+                inset: 0,
+                background: "rgba(0,0,0,0.88)",
+                zIndex: 9999,
+                overflowY: "auto",
+                padding: 40,
+              }}
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  maxWidth: 1400,
+                  margin: "0 auto",
+                }}
+              >
+                {/* HEADER MODAL */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 24,
+                  }}
+                >
+                  <h2
+                    style={{
+                      color: "#fff",
+                      fontSize: 36,
+                      fontWeight: 900,
+                    }}
+                  >
+                    Semua Galeri
+                  </h2>
+
+                  <button
+                    onClick={() => setOpenGallery(false)}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: "50%",
+                      border: "none",
+                      background: "rgba(255,255,255,0.1)",
+                      color: "#fff",
+                      fontSize: 24,
+                      cursor: "pointer",
+                    }}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* GRID FULL */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+                    gap: 16,
+                  }}
+                >
+                  {GALLERY.map((g, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        height: 260,
+                      }}
+                    >
+                      <GaleriCard item={g} index={0} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
