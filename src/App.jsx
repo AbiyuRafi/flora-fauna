@@ -1399,9 +1399,9 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <Divider />
-            <h2
+            <h4
               style={{
-                fontSize: "clamp(28px,5vw,50px)",
+                fontSize: "clamp(22px,3vw,50px)",
                 fontWeight: 900,
                 margin: "14px 0 14px",
                 letterSpacing: -1,
@@ -1409,7 +1409,7 @@ export default function App() {
               }}
             >
               Dokumentasi Tentang Kekayaan Alam Labuhan Merak
-            </h2>
+            </h4>
           </div>
           <div
             style={{
