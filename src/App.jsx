@@ -7,6 +7,8 @@ import FaunaCard from "./components/FaunaCard";
 import { Fauna } from "./data/Fauna";
 import GaleriCard from "./components/GaleriCard";
 import { GALLERY } from "./data/Galeri";
+import Video1 from "./assets/videos/video_1.mp4";
+import Video2 from "./assets/videos/video_2.mp4";
 import hero_mangrove from "./assets/hero_mangrove.JPG";
 import { useRef } from "react";
 
@@ -62,31 +64,14 @@ const HERO_SLIDES = [
 
 const VIDEOS = [
   {
+    id: 1,
+    title: "Pesona Labuhan Merak",
+    video: Video1,
+  },
+  {
     id: 2,
-    title: "Kehidupan Bawah Laut Raja Ampat",
-    duration: "18:22",
-    views: "4.1 Juta",
-    thumb:
-      "https://images.unsplash.com/photo-1559548331-f9cb98280344?w=800&q=80",
-    category: "Fauna Laut",
-  },
-  {
-    id: 3,
-    title: "Migrasi Burung Cendrawasih Papua",
-    duration: "8:57",
-    views: "890 Ribu",
-    thumb:
-      "https://images.unsplash.com/photo-1552727131-5fc6af00c5e1?w=800&q=80",
-    category: "Burung",
-  },
-  {
-    id: 4,
-    title: "Rafflesia: Bunga Terbesar Dunia",
-    duration: "21:05",
-    views: "1.7 Juta",
-    thumb:
-      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=80",
-    category: "Flora Langka",
+    title: "Pesona Labuhan Merak",
+    video: Video2,
   },
 ];
 
@@ -144,10 +129,12 @@ function Divider({ light }) {
   );
 }
 /* ─── VIDEO CARD ─────────────────────────────────────────────────── */
-function VideoCard({ item }) {
+function VideoCard({ item, onClick }) {
   const [hov, setHov] = useState(false);
+
   return (
     <div
+      onClick={() => onClick(item)}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
@@ -163,19 +150,38 @@ function VideoCard({ item }) {
       }}
     >
       <div style={{ position: "relative", paddingBottom: "56.25%" }}>
-        <img
-          src={item.thumb}
-          alt={item.title}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: hov ? 0.62 : 0.82,
-            transition: "opacity 0.3s ease",
-          }}
-        />
+        {item.video ? (
+          <video
+            src={item.video}
+            muted
+            loop
+            autoPlay
+            playsInline
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: hov ? 0.62 : 0.82,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        ) : (
+          <img
+            src={item.thumb}
+            alt={item.title}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: hov ? 0.62 : 0.82,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        )}
         <div
           style={{
             position: "absolute",
@@ -264,9 +270,7 @@ function VideoCard({ item }) {
         >
           {item.title}
         </h4>
-        <p style={{ color: `${C.greenPale}88`, fontSize: 12, margin: 0 }}>
-          👁️ {item.views} penonton
-        </p>
+        <p style={{ color: `${C.greenPale}88`, fontSize: 12, margin: 0 }}></p>
       </div>
     </div>
   );
@@ -483,6 +487,7 @@ export default function App() {
   const [scrollBack, setScrollBack] = useState(false);
   const [openGallery, setOpenGallery] = useState(false);
   const [columns, setColumns] = useState(4);
+  const [openVideo, setOpenVideo] = useState(null);
 
   useEffect(() => {
     if (scrollBack && !showAll) {
@@ -968,8 +973,8 @@ export default function App() {
                 lineHeight: 1.7,
               }}
             >
-              Indonesia memiliki kekayaan alam luar biasa mulai dari bentang
-              alam, tumbuhan khas, hingga satwa endemik yang mempesona
+              Baluran memiliki kekayaan alam luar biasa mulai dari bentang alam,
+              tumbuhan khas, hingga satwa endemik yang mempesona
             </p>
           </div>
 
@@ -1201,7 +1206,19 @@ export default function App() {
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {/* HEADER */}
-          <div style={{ textAlign: "center", marginBottom: 48 }}>...</div>
+          <div style={{ marginBottom: 48 }}>
+            {/* TITLE */}
+            <h2
+              style={{
+                fontSize: 42,
+                fontWeight: 900,
+                color: "#fff",
+                margin: 0,
+              }}
+            >
+              Galeri Alam
+            </h2>
+          </div>
 
           {/* GRID */}
           <div
@@ -1382,17 +1399,6 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <Divider />
-            <span
-              style={{
-                color: C.brownMid,
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-              }}
-            >
-              Video Dokumenter
-            </span>
             <h2
               style={{
                 fontSize: "clamp(28px,5vw,50px)",
@@ -1402,19 +1408,8 @@ export default function App() {
                 color: C.brownDark,
               }}
             >
-              Saksikan Alam Bercerita
+              Dokumentasi Tentang Kekayaan Alam Labuhan Merak
             </h2>
-            <p
-              style={{
-                color: C.textMid,
-                fontSize: 16,
-                maxWidth: 560,
-                margin: "0 auto",
-              }}
-            >
-              Dokumenter pilihan tentang keajaiban alam flora dan fauna
-              Indonesia
-            </p>
           </div>
           <div
             style={{
@@ -1424,11 +1419,136 @@ export default function App() {
             }}
           >
             {VIDEOS.map((v) => (
-              <VideoCard key={v.id} item={v} />
+              <VideoCard
+                key={v.id}
+                item={v}
+                onClick={(video) => setOpenVideo(video)}
+              />
             ))}
           </div>
         </div>
       </section>
+      {openVideo && (
+        <div
+          onClick={() => setOpenVideo(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.92)",
+            zIndex: 99999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 1100,
+              maxHeight: "95vh",
+              overflowY: "auto",
+              borderRadius: 28,
+              background: "#111",
+              padding: 20,
+              position: "relative",
+              boxShadow: "0 20px 80px rgba(0,0,0,0.5)",
+            }}
+          >
+            {/* CLOSE */}
+            <button
+              onClick={() => setOpenVideo(null)}
+              style={{
+                position: "absolute",
+                background: "rgba(255,255,255,0.12)",
+                border: "none",
+                color: "#fff",
+                width: 42,
+                height: 42,
+                borderRadius: "50%",
+                fontSize: 20,
+                cursor: "pointer",
+                zIndex: 10,
+              }}
+            >
+              ✕
+            </button>
+
+            {/* VIDEO */}
+            <video
+              src={openVideo.video}
+              controls
+              autoPlay
+              playsInline
+              style={{
+                width: "100%",
+                maxHeight: "70vh",
+                borderRadius: 20,
+                background: "#000",
+                objectFit: "contain",
+              }}
+            />
+
+            {/* CONTENT */}
+            <div
+              style={{
+                marginTop: 22,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 20,
+                flexWrap: "wrap",
+              }}
+            >
+              <div style={{ flex: 1 }}>
+                <h2
+                  style={{
+                    color: "#fff",
+                    margin: 0,
+                    fontSize: "clamp(24px,4vw,38px)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {openVideo.title}
+                </h2>
+
+                <p
+                  style={{
+                    color: "rgba(255,255,255,0.6)",
+                    marginTop: 10,
+                    fontSize: 14,
+                  }}
+                >
+                  {openVideo.category}
+                  {openVideo.views}
+                </p>
+              </div>
+
+              {/* DOWNLOAD */}
+              <a
+                href={openVideo.video}
+                download
+                style={{
+                  background: C.brownLight,
+                  color: "#fff",
+                  textDecoration: "none",
+                  padding: "14px 24px",
+                  borderRadius: 999,
+                  fontWeight: 800,
+                  fontSize: 14,
+                  whiteSpace: "nowrap",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+                }}
+              >
+                Download Video
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* FOOTER */}
       <footer
@@ -1458,7 +1578,8 @@ export default function App() {
               >
                 <span style={{ fontSize: 22 }}>🌿</span>
                 <span style={{ fontSize: 17, fontWeight: 900, color: "#fff" }}>
-                  Pesona<span style={{ color: C.brownLight }}>Labuhan </span>Merak
+                  Pesona<span style={{ color: C.brownLight }}>Labuhan </span>
+                  Merak
                 </span>
               </div>
               <p
@@ -1469,7 +1590,7 @@ export default function App() {
                   margin: 0,
                 }}
               >
-                Platform edukasi keanekaragaman hayati Indonesia yang
+                Platform edukasi keanekaragaman hayati Labuhan Merak yang
                 menakjubkan.
               </p>
             </div>
