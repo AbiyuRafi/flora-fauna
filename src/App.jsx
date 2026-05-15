@@ -1462,6 +1462,8 @@ export default function App() {
               onClick={() => setOpenVideo(null)}
               style={{
                 position: "absolute",
+                top: 16,
+                right: 16,
                 background: "rgba(255,255,255,0.12)",
                 border: "none",
                 color: "#fff",
@@ -1471,6 +1473,10 @@ export default function App() {
                 fontSize: 20,
                 cursor: "pointer",
                 zIndex: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backdropFilter: "blur(10px)",
               }}
             >
               ✕
@@ -1522,8 +1528,7 @@ export default function App() {
                     fontSize: 14,
                   }}
                 >
-                  {openVideo.category}
-                  {openVideo.views}
+                  {openVideo.category} • {openVideo.views}
                 </p>
               </div>
 
