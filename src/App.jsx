@@ -1528,7 +1528,6 @@ export default function App() {
                     fontSize: 14,
                   }}
                 >
-                  {openVideo.category} • {openVideo.views}
                 </p>
               </div>
 
